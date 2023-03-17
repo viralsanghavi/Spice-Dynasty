@@ -1,6 +1,16 @@
 import CInput from "@/components/CInput";
 import MainLayout from "@/layout/MainLayout";
-import {Box, Button, Container, Flex} from "@mantine/core";
+import {
+  Anchor,
+  BackgroundImage,
+  Box,
+  Button,
+  Container,
+  Flex,
+  Text,
+  Title,
+} from "@mantine/core";
+import {useMediaQuery} from "@mantine/hooks";
 import {useId} from "react";
 
 const Contact = () => {
@@ -20,41 +30,136 @@ const Contact = () => {
     },
   ];
   const id = useId();
+  const largeScreen = useMediaQuery("(min-width: 900px)");
 
   return (
-    <MainLayout>
-      <Container>
-        {/* Registered Address */}
-        <Flex wrap="wrap" justify="space-between">
-          <Box
-            sx={{
-              maxWidth: "30%",
-            }}
-          >
-            <b>Registered Address</b>
-            {addressList.map(({icon, value}) => (
-              <Flex sx={{}} gap="md" key={icon + value}>
-                <p>{icon}</p>
-                <p>{value}</p>
-              </Flex>
-            ))}
-          </Box>
-          <Box>
-            <h3>WE WOULD LOVE TO HEAR FROM YOU.</h3>
-            <b>Please complete the fields below.</b>
-            <Flex gap="xl">
-              <CInput label="Full Name" />
-              <CInput label="Email" />
-            </Flex>
-            <CInput label="Mobile Number" />
-            <CInput label="Company Name" />
-            <CInput label="Message" />
+    <MainLayout noBanner>
+      <Flex
+        direction={{base: "column-reverse", xs: "column-reverse", md: "row"}}
+      >
+        <Box
+          mih={{
+            base: "50vh",
+            sm: "50vh",
+            md: "90vh",
+          }}
+          sx={{
+            width: "100%",
+            flex: 0.5,
+            backgroundImage:
+              "url(https://uploads-ssl.webflow.com/6298b34b57c18a509ebe1211/6321c4686667e7bd17417c49_DSC01486.webp)",
+            backgroundPosition: "50% 0",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+        <Box
+          sx={{
+            flex: 0.5,
+            maxHeight: "90vh",
+            margin: "20px 0",
+          }}
+          px="md"
+        >
+          <Flex direction="column" gap={20} flex={1} h="80%">
+            <Text
+              sx={{
+                fontWeight: "lighter",
+                fontSize: "0.85rem",
+                width: "fit-content",
+              }}
+            >
+              Hi there!
+            </Text>
+            <Box>
+              <Anchor
+                variant="default"
+                sx={{
+                  height: "auto",
+                  width: "auto",
+                  backgroundColor: "transparent",
+                  border: "none",
+                  ":hover": {
+                    backgroundColor: "transparent",
+                  },
+                  overflowWrap: "break-word",
+                }}
+                href="mailto:vsanghavi3@gmail.com"
+              >
+                <Text
+                  size={{
+                    base: 20,
+                    sm: 20,
+                  }}
+                  sx={{
+                    fontWeight: 400,
+                    textDecoration: "underline",
+                    textDecorationThickness: "2px",
+                    width: "fit-content",
+                    letterSpacing: "1px",
+                    overflowWrap: "break-word",
+                    fontSize: largeScreen ? "2.5rem" : "1.5rem",
+                  }}
+                >
+                  hi@spicedynasty.co.in
+                </Text>
+              </Anchor>
+              <Anchor
+                variant="default"
+                sx={{
+                  height: "auto",
+                  width: "auto",
+                  backgroundColor: "transparent",
+                  border: "none",
+                  ":hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+                href="phone:+918080626605"
+              >
+                <Text
+                  my={18}
+                  sx={{
+                    fontSize: "1.2rem",
+                    letterSpacing: "2px",
+                    fontWeight: 400,
+                    width: "fit-content",
+                  }}
+                >
+                  +91 8080626605
+                </Text>
+              </Anchor>
+            </Box>
+            <Box>
+              <Text
+                sx={{
+                  fontWeight: 600,
+                }}
+              >
+                You have a query? Why not click the email address or the Contact
+                number
+              </Text>
+              <Text
+                sx={{
+                  fontWeight: 600,
+                }}
+              >
+                We are here to help you find the finest Spices ever found
+              </Text>
+            </Box>
 
-            <Button>SEND ENQUIRY</Button>
-          </Box>
-        </Flex>
-        {/* COnnect with us */}
-      </Container>
+            <Box
+              sx={{
+                marginTop: "auto",
+              }}
+            >
+              <Text>Navi Mumbai</Text>
+              <Text>255G 9000 Ghent</Text>
+              <Text>Navi Mumbai BE 0838.495.021</Text>
+            </Box>
+          </Flex>
+        </Box>
+      </Flex>
     </MainLayout>
   );
 };

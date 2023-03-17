@@ -4,14 +4,19 @@ import {Box, Button, Center} from "@mantine/core";
 import {useScrollIntoView} from "@mantine/hooks";
 import Image from "next/image";
 import React from "react";
+import PropTypes from "prop-types";
 
-const MainLayout = ({children}) => {
+const MainLayout = ({children, noBanner}) => {
   const {scrollIntoView, targetRef} = useScrollIntoView({offset: 60});
 
   return (
-    <main ref={targetRef}>
+    <main
+      ref={targetRef}
+      style={{
+        width: "100%",
+      }}
+    >
       <Header />
-      <Banner />
       <div>
         <div>{children}</div>
         <Button
@@ -48,6 +53,15 @@ const MainLayout = ({children}) => {
       </div>
     </main>
   );
+};
+
+MainLayout.defaultProps = {
+  noBanner: false,
+  children: <></>,
+};
+MainLayout.prototype = {
+  noBanner: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 export default MainLayout;
