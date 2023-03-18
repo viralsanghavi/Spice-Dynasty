@@ -29,6 +29,8 @@ export default function Home() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          flexWrap: "wrap-reverse",
+          height: "100%",
         }}
       >
         {children}
@@ -99,53 +101,31 @@ export default function Home() {
             </ActionIcon>
           )}
           animationHandler="fade"
-          dynamicHeight
         >
-          <RenderInContainer>
-            <Box
-              w={"50%"}
-              sx={{
-                textAlign: "left",
-              }}
-            >
-              <Text fz="xl">handpicked Spices</Text>
-              <Title fz="xxxl" lh={0.85}>
-                STAR ARINSE
-              </Title>
-              <Text fz="xs" mt={20}>
-                Star arinse has been used in Asian Eurasian, cooking for many
-                many years. This old-age spice is not only known as culinary
-                expert, but is also famous fors its medicinal properties.
-              </Text>
-            </Box>
-            <Box w={"50%"}>
-              <img alt="" src="https://picsum.photos/1080" />
-            </Box>
-          </RenderInContainer>
-          <RenderInContainer>
-            <Box
-              w={"50%"}
-              sx={{
-                textAlign: "left",
-              }}
-            >
-              <Text fz="xl">handpicked Spices</Text>
-              <Title fz="xxxl" lh={0.85}>
-                STAR ARINSE
-              </Title>
-              <Text fz="xs" mt={20}>
-                Star arinse has been used in Asian Eurasian, cooking for many
-                many years. This old-age spice is not only known as culinary
-                expert, but is also famous fors its medicinal properties.
-              </Text>
-            </Box>
-            <Box w={"50%"}>
-              <img
-                alt=""
-                src="https://fastly.picsum.photos/id/310/1080/1080.jpg?hmac=GZFUqkWK4wnnXwokT6XnBA_SPLbV953MCE1JkLVua7w"
-              />
-            </Box>
-          </RenderInContainer>
+          {[1, 2, 3].map((item) => (
+            <RenderInContainer key={item} style={{height: "100%"}}>
+              <Box
+                w={{sm: "100%", md: "50%", lg: "50%", xl: "50%"}}
+                sx={{
+                  textAlign: "left",
+                  h: "100%",
+                }}
+              >
+                <Text fz="xl">Spice Dynasty</Text>
+                <Title fz="xxxl" lh={0.85}>
+                  STAR ARINSE
+                </Title>
+                <Text fz="xs" mt={20}>
+                  Star arinse has been used in Asian Eurasian, cooking for many
+                  many years. This old-age spice is not only known as culinary
+                  expert, but is also famous fors its medicinal properties.
+                </Text>
+              </Box>
+              <Box w={{sm: "100%", md: "50%", lg: "50%", xl: "50%"}}>
+                <img alt="" src="https://picsum.photos/1080" />
+              </Box>
+            </RenderInContainer>
+          ))}
         </Carousel>
       </Box>
 
@@ -249,7 +229,7 @@ export default function Home() {
             "linear-gradient( to bottom, white 0%, white 70%,  #b78f5d 70%, #b78f5d 100%)",
         }}
       >
-        <Flex gap="xl" px={80} wrap="wrap">
+        <Flex gap="xl" px={{md: 20, lg: 80}} wrap="wrap">
           <Box w={{sm: "100%", md: "100%", lg: "48%"}}>
             <Card p={0} radius={12} shadow="xl">
               <Image src="https://cdn.shopify.com/s/files/1/0631/1647/6675/products/Nestroot_04.png?v=1675512303" />
@@ -257,8 +237,7 @@ export default function Home() {
           </Box>
           <Box w={{sm: "100%", md: "100%", lg: "48%"}}>
             <Title lh={1}>About</Title>
-            <Title lh={1}>Spice</Title>
-            <Title lh={1}>Dynasty</Title>
+            <Title lh={1}>Spice Dynasty</Title>
             <Text py={34} fz="xs">
               Spice dynastys spices are top grade. hand picked by experts and
               processed under strict hygenic condition and careful supervision
