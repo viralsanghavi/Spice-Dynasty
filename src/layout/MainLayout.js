@@ -22,7 +22,7 @@ const MainLayout = ({children, noBanner}) => {
         <Button
           onClick={() => scrollIntoView({alignment: "center"})}
           sx={{
-            background: "#4952f4",
+            background: "#b78f5e",
             height: "fit-content",
             position: "fixed",
             bottom: 0,
