@@ -30,6 +30,9 @@ const MainLayout = ({children, noBanner}) => {
             borderRadius: "100px 0px 0px",
             justifyContent: "unset",
             padding: "18px 4px 4px 18px",
+            ":hover": {
+              background: "#000000",
+            },
           }}
         >
           <div>

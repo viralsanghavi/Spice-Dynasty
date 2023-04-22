@@ -115,7 +115,7 @@ const Contact = () => {
                     backgroundColor: "transparent",
                   },
                 }}
-                href="phone:+918080626605"
+                href="phone:+918369791656"
               >
                 <Text
                   my={18}
@@ -126,7 +126,7 @@ const Contact = () => {
                     width: "fit-content",
                   }}
                 >
-                  +91 8080626605
+                  +91 83697 91656
                 </Text>
               </Anchor>
             </Box>

@@ -5,19 +5,20 @@ import {
   Box,
   Button,
   Card,
-  Center,
   Container,
   Flex,
   Grid,
-  Image,
   Text,
   Title,
 } from "@mantine/core";
 import Head from "next/head";
+import {useRouter} from "next/router";
 import {Carousel} from "react-responsive-carousel";
-import {UilPlus} from "@iconscout/react-unicons";
+import Image from "next/image";
 
 export default function Home() {
+  const router = useRouter();
+
   const RenderInContainer = ({children}) => (
     <Container
       sx={{
@@ -46,7 +47,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Box py={80} p="xl">
+      <Box
+        py={80}
+        p="xl"
+        style={{
+          ".controlDots?": {
+            top: 0,
+          },
+        }}
+      >
         <Carousel
           axis="horizontal"
           // autoPlay
@@ -61,12 +70,11 @@ export default function Home() {
                 top: "50%",
                 bottom: 0,
                 left: 0,
-
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 zIndex: 30232,
-                backgroundColor: "#dcd3cd",
+                backgroundColor: "transparent",
                 ":hover": {
                   backgroundColor: "#cebba4",
                 },
@@ -88,7 +96,7 @@ export default function Home() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "#dcd3cd",
+                backgroundColor: "transparent",
                 ":hover": {
                   backgroundColor: "#cebba4",
                 },
@@ -102,27 +110,73 @@ export default function Home() {
           )}
           animationHandler="fade"
         >
-          {[1, 2, 3].map((item) => (
-            <RenderInContainer key={item} style={{height: "100%"}}>
+          {[
+            {
+              title: "Star Arinse",
+              url: "https://media.istockphoto.com/id/1140288941/photo/organic-indian-spice-herb-star-anise-in-a-brown-bowl.jpg?s=612x612&w=0&k=20&c=dPcRb4maN-ABZC82B64zRYJpYvXLk3NMl7g0a53dxhk=",
+            },
+            {
+              title: "Cumin",
+              url: "/cumin.jpg",
+            },
+            {
+              title: "Turmeric",
+              url: "/turmeric.jpeg",
+            },
+            {
+              title: "Chilly",
+              url: "/chilli.jpg",
+            },
+            {
+              title: "Ginger",
+              url: "/ginger.jpeg",
+            },
+            {
+              title: "Coriander",
+              url: "/coriander.jpg",
+            },
+            {
+              title: "Green cardamom",
+              url: "/green-cardamom.jpg",
+            },
+          ].map(({title, url}) => (
+            <RenderInContainer key={title} style={{height: "100%"}}>
               <Box
-                w={{sm: "100%", md: "50%", lg: "50%", xl: "50%"}}
+                w={{sm: "100%", md: "100%", lg: "50%", xl: "50%"}}
                 sx={{
                   textAlign: "left",
                   h: "100%",
                 }}
               >
-                <Text fz="xl">Spice Dynasty</Text>
+                <Text fz="lg" mb={5}>
+                  Spice Dynasty
+                </Text>
                 <Title fz="xxxl" lh={0.85}>
-                  STAR ARINSE
+                  {title}
                 </Title>
-                <Text fz="xs" mt={20}>
+                <Text
+                  fz="xs"
+                  mt={20}
+                  maw={{sm: "100%", md: "75%"}}
+                  ta="justify"
+                >
                   Star arinse has been used in Asian Eurasian, cooking for many
                   many years. This old-age spice is not only known as culinary
                   expert, but is also famous fors its medicinal properties.
                 </Text>
               </Box>
-              <Box w={{sm: "100%", md: "50%", lg: "50%", xl: "50%"}}>
-                <img alt="" src="https://picsum.photos/1080" />
+              <Box
+                w={{sm: "100%", md: "100%", lg: "50%", xl: "50%"}}
+                style={{
+                  position: "relative",
+                  height: "400px",
+                  width: "50%",
+                  alignItems: "center",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Image alt="" fill src={url} style={{objectFit: "cover"}} />
               </Box>
             </RenderInContainer>
           ))}
@@ -132,78 +186,106 @@ export default function Home() {
       <Box
         bg="#b78f5d"
         p="xl"
-        py={80}
-        display="flex"
+        pt={80}
         sx={{
+          display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          gap: "2rem",
         }}
       >
-        <Flex
-          sx={{
+        <div
+          style={{
+            display: "grid",
             flexDirection: "row",
             flexWrap: "wrap",
-            // height: "100%",
-            width: "100%",
+            maxWidth: "1024px",
+            margin: "0 auto",
+            gap: 20,
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           }}
-          gap={50}
         >
-          {[1, 2, 3, 4, 5, 6].map(({item, index}) => (
-            <Card
-              key={item}
+          {[
+            {
+              title: "Cumin",
+              url: "/cumin.jpg",
+            },
+            {
+              title: "Turmeric",
+              url: "/turmeric.jpeg",
+            },
+            {
+              title: "Chilly",
+              url: "/chilli.jpg",
+            },
+            {
+              title: "Ginger",
+              url: "/ginger.jpeg",
+            },
+            {
+              title: "Coriander",
+              url: "/coriander.jpg",
+            },
+            {
+              title: "Green cardamom",
+              url: "/green-cardamom.jpg",
+            },
+          ].map(({title, url, index}) => (
+            <Box
+              key={title}
               pos="relative"
-              p={40}
-              sx={{flex: "1 1 100%"}}
-              maw={{
-                sm: "100%",
-                md: "47%",
-                lg: "30%",
-                xl: 480,
-              }}
-              radius={16}
-              h="100%"
+              p={24}
               shadow="xl"
+              bg="white"
+              sx={{
+                borderRadius: 24,
+                boxShadow:
+                  "0px 1px 2px rgba(0, 0, 0, 0.2), 0px 2px 6px 2px rgba(0, 0, 0, 0.15)",
+                ":hover": {
+                  boxShadow:
+                    "0px 1px 2px rgba(0, 0, 0, 0.4), 0px 2px 6px 2px rgba(0, 0, 0, 0.35)",
+                },
+                cursor: "pointer",
+              }}
             >
-              <Image
-                alt=""
-                src="https://cdn.fstoppers.com/styles/full/s3/media/2015/12/07/white_background_bag_after.jpg"
-              />
+              <Box
+                sx={{
+                  position: "relative",
+                  height: "200px",
+                  width: "220px",
+                  margin: "0 auto",
+                }}
+              >
+                <Image
+                  alt={title}
+                  fit="contain"
+                  fill
+                  style={{
+                    objectFit: "contain",
+                  }}
+                  src={
+                    url ||
+                    "https://cdn.fstoppers.com/styles/full/s3/media/2015/12/07/white_background_bag_after.jpg"
+                  }
+                />
+              </Box>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "self-end",
-                  height: "100%",
+                  marginTop: 16,
                 }}
               >
                 <Box>
                   <Text size="lg" fw="bold">
-                    Black pepper
+                    {title}
                   </Text>
                   <Text size="xs" color="#b78f5d" fw="lighter">
                     Item Code: AkKEP2
                   </Text>
                 </Box>
               </Box>
-              <Box
-                pos="absolute"
-                bg="#b78f5d"
-                right={0}
-                bottom={30}
-                p={20}
-                pl={30}
-                w="100px"
-                sx={{
-                  borderTopLeftRadius: "30px",
-                  borderBottomLeftRadius: "30px",
-                  textAlign: "center",
-                }}
-              >
-                <Text color="white">₹ 250</Text>
-              </Box>
-            </Card>
+            </Box>
           ))}
-        </Flex>
+        </div>
         <Button
           radius="28px"
           variant="outline"
@@ -211,11 +293,18 @@ export default function Home() {
             borderColor: "white",
             color: "white",
             textAlign: "center",
-            margin: "0 auto",
-            height: "auto",
+            margin: "20px auto",
+            flex: 1,
           }}
         >
-          <Text color="white" p={12} tt="uppercase" lts={1.5} fw="normal">
+          <Text
+            color="white"
+            p={12}
+            tt="uppercase"
+            lts={1.5}
+            fw="normal"
+            onClick={() => router.push("all-products")}
+          >
             View All Products
           </Text>
         </Button>
@@ -232,7 +321,20 @@ export default function Home() {
         <Flex gap="xl" px={{md: 20, lg: 80}} wrap="wrap">
           <Box w={{sm: "100%", md: "100%", lg: "48%"}}>
             <Card p={0} radius={12} shadow="xl">
-              <Image src="https://cdn.shopify.com/s/files/1/0631/1647/6675/products/Nestroot_04.png?v=1675512303" />
+              <Box
+                sx={{
+                  position: "relative",
+                  height: "400px",
+                }}
+              >
+                <Image
+                  src="https://cdn.shopify.com/s/files/1/0631/1647/6675/products/Nestroot_04.png?v=1675512303"
+                  fill
+                  style={{
+                    objectFit: "cover",
+                  }}
+                />
+              </Box>
             </Card>
           </Box>
           <Box w={{sm: "100%", md: "100%", lg: "48%"}}>

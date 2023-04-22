@@ -58,9 +58,7 @@ export default function App(props) {
             xxxl: "45px",
             vxl: "48px",
           },
-          spacing: {
-            
-          },
+          spacing: {},
           components: {
             Text: {
               defaultProps: {
@@ -84,7 +82,8 @@ export default function App(props) {
               // backgroundColor:
               //   theme.colorScheme === "dark" ? theme.colors.dark[7] : "#262626",
               // color:
-              background: "linear-gradient(to right, #FFF,#e6e7ec, #e7e8ed)",
+              // background: "linear-gradient(to right, #FFF,#F8F9FD, #e7e8ed)",
+              background: "#F8F9FD",
               //   theme.colorScheme === "dark"
               //     ? theme.colors.dark[0]
               //     : theme.black,

@@ -2,6 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    domains: [
+      "media.istockphoto.com",
+      "thumbs.dreamstime.com",
+      "cdn.fstoppers.com",
+      "*.com",
+      "cdn.shopify.com",
+    ],
     remotePatterns: [
       {
         protocol: "https",
