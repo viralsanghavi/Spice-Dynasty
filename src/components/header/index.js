@@ -100,7 +100,6 @@ const Header = () => {
   const router = useRouter();
   const headers = [
     {title: "Home", path: "/"},
-    {title: "About", path: "/about"},
     {title: "Contact Us", path: "/contact"},
   ];
   const mediaList = [

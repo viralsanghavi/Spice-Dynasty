@@ -314,8 +314,8 @@ export default function Home() {
         py={80}
         p="xl"
         sx={{
-          background:
-            "linear-gradient( to bottom, white 0%, white 70%,  #b78f5d 70%, #b78f5d 100%)",
+          background: "white",
+          // "linear-gradient( to bottom, white 0%, white 70%,  #b78f5d 70%, #b78f5d 100%)",
         }}
       >
         <Flex gap="xl" px={{md: 20, lg: 80}} wrap="wrap">
@@ -341,15 +341,31 @@ export default function Home() {
             <Title lh={1}>About</Title>
             <Title lh={1}>Spice Dynasty</Title>
             <Text py={34} fz="xs">
-              Spice dynastys spices are top grade. hand picked by experts and
-              processed under strict hygenic condition and careful supervision
-              which leads to unequalled savoury goodness to your cooking.
+              Welcome to our company, a seasoned exporter of spices from India
+              with over 120 years of experience in the industry. Our legacy
+              dates back to the early 1900s when our ancestors started trading
+              in spices, and we have since established ourselves as a trusted
+              supplier of high-quality spices to customers around the world.
             </Text>
             <Text fz="xs">
-              Though it is one mission but not adopted like business. the
-              product is entirety pure with is quality control and is under the
-              Strict supervision Of family. This is the reason that no other
-              products of the same type could take the place of this.
+              We are committed to delivering the best spices to our clients,
+              sourced directly from the farmers and processed using the latest
+              technology to ensure their authenticity and flavor. Our vast
+              network of suppliers and distributors allows us to cater to every
+              corner of the globe and meet the diverse needs of our customers.
+            </Text>
+            <Text fz="xs">
+              With a deep understanding of the spice market and a
+              customer-centric approach, we have earned a reputation for
+              excellence and reliability. Our team of experts is dedicated to
+              providing exceptional service, ensuring timely deliveries, and
+              maintaining consistent quality across all our products.
+            </Text>
+            <Text fz="xs">
+              Whether you&apos;re a small business or a multinational
+              corporation, we are committed to providing you with the best
+              spices from India. Trust us to be your partner in all your spice
+              needs and experience the quality and authenticity of our products.
             </Text>
             <Button
               bg="black"
