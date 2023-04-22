@@ -5,6 +5,8 @@ import {useScrollIntoView} from "@mantine/hooks";
 import Image from "next/image";
 import React from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion"
+
 
 const MainLayout = ({children, noBanner}) => {
   const {scrollIntoView, targetRef} = useScrollIntoView({offset: 60});
