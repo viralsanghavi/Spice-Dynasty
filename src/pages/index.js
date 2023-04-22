@@ -198,6 +198,7 @@ export default function Home() {
             flexDirection: "row",
             flexWrap: "wrap",
             maxWidth: "1024px",
+            width: "100%",
             margin: "0 auto",
             gap: 20,
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -303,7 +304,7 @@ export default function Home() {
             tt="uppercase"
             lts={1.5}
             fw="normal"
-            onClick={() => router.push("all-products")}
+            onClick={() => router.push("product")}
           >
             View All Products
           </Text>
