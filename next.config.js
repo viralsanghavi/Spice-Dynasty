@@ -8,6 +8,7 @@ const nextConfig = {
       "cdn.fstoppers.com",
       "*.com",
       "cdn.shopify.com",
+      "picsum.photos",
     ],
     remotePatterns: [
       {

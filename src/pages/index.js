@@ -115,10 +115,10 @@ export default function Home() {
         >
           {[
             {
-              title: "Star Arinse",
-              url: "https://media.istockphoto.com/id/1140288941/photo/organic-indian-spice-herb-star-anise-in-a-brown-bowl.jpg?s=612x612&w=0&k=20&c=dPcRb4maN-ABZC82B64zRYJpYvXLk3NMl7g0a53dxhk=",
+              title: "Star Anise",
+              url: "https://media.istockphoto.com/id/1140288941/photo/organic-indian-spice-herb-star-Anise-in-a-brown-bowl.jpg?s=612x612&w=0&k=20&c=dPcRb4maN-ABZC82B64zRYJpYvXLk3NMl7g0a53dxhk=",
               description:
-                "Star arinse has been used in Asian Eurasian, cooking for many many years. This old-age spice is not only known as culinary expert, but is also famous fors its medicinal properties.",
+                "Star Anise has been used in Asian Eurasian, cooking for many many years. This old-age spice is not only known as culinary expert, but is also famous fors its medicinal properties.",
             },
             {
               title: "Cumin",
