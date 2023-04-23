@@ -1,22 +1,20 @@
-import Banner from "@/components/Banner";
 import Header from "@/components/header";
-import {Box, Button, Center} from "@mantine/core";
+import {Button} from "@mantine/core";
 import {useScrollIntoView} from "@mantine/hooks";
-import Image from "next/image";
-import React from "react";
+import {motion} from "framer-motion";
 import PropTypes from "prop-types";
-import { motion } from "framer-motion"
-
 
 const MainLayout = ({children, noBanner}) => {
   const {scrollIntoView, targetRef} = useScrollIntoView({offset: 60});
 
   return (
-    <main
+    <motion.main
+      initial={{opacity: 0, y: 50}}
+      animate={{opacity: 1, y: 0}}
+      exit={{opacity: 0, y: -50}}
+      transition={{duration: 0.3}}
+      style={{width: "100%"}}
       ref={targetRef}
-      style={{
-        width: "100%",
-      }}
     >
       <Header />
       <div>
@@ -56,7 +54,7 @@ const MainLayout = ({children, noBanner}) => {
           </div>
         </Button>
       </div>
-    </main>
+    </motion.main>
   );
 };
 
