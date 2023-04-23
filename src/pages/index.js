@@ -58,7 +58,7 @@ export default function Home() {
       >
         <Carousel
           axis="horizontal"
-          // autoPlay
+          autoPlay
           infiniteLoop
           showStatus={false}
           transitionTime={600}
@@ -80,6 +80,7 @@ export default function Home() {
                   backgroundColor: "#cebba4",
                 },
               }}
+              display={{base: "none", sm: "flex"}}
               radius="xl"
               onClick={clickHandler}
               size="xl"
@@ -102,6 +103,7 @@ export default function Home() {
                   backgroundColor: "#cebba4",
                 },
               }}
+              display={{base: "none", sm: "flex"}}
               radius="xl"
               size="xl"
               onClick={clickHandler}
