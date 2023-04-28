@@ -1,5 +1,5 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-
+import "src/styles/globals.css";
 import {Global, MantineProvider} from "@mantine/core";
 import Head from "next/head";
 import {Poppins} from "@next/font/google";

@@ -131,60 +131,14 @@ const Header = () => {
           lg: "space-between",
         }}
       >
-        <ActionIcon
-          onClick={open}
-          display={{
-            sm: "block",
-            md: "block",
-            lg: "none",
-          }}
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <UilBars />
-        </ActionIcon>
-        <RightDrawer />
-        <Box
-          sx={{
-            alignItems: "center",
-            gap: "3rem",
-          }}
-          display={{
-            base: "none",
-            sm: "none",
-            md: "none",
-            lg: "flex",
-          }}
-        >
-          {headers.map(({title, path}, key) => (
-            <Box
-              as="button"
-              sx={{
-                cursor: "pointer",
-                fontWeight: 800,
-                color: pathname === path ? "#b78f5e" : "initial",
-                borderBottom:
-                  pathname === path ? "2.7px solid #b78f5e" : "none",
-                ":hover": {
-                  color: "#b78f5e",
-                },
-                lineHeight: "28px",
-              }}
-              key={title + key}
-              onClick={() => router.push(path)}
-            >
-              {title}
-            </Box>
-          ))}
-        </Box>
         <Image
-          src="https://images-platform.99static.com//DsfkxNyI7VYD-WNNx3PGjGOY-YA=/197x125:801x729/fit-in/500x500/99designs-contests-attachments/118/118769/attachment_118769905"
-          height={80}
+          src="/logo.png"
+          // height={280}
+          fill
           width={80}
           style={{
-            borderRadius: "50%",
+            // borderRadius: "50%",
+            objectFit: "contain",
           }}
         />
         <Box

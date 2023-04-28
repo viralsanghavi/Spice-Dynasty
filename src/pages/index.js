@@ -1,4 +1,5 @@
 import MainLayout from "@/layout/MainLayout";
+import {getCollectionData} from "@/utils/get-collection-data";
 import {UilAngleLeft, UilAngleRight} from "@iconscout/react-unicons";
 import {
   ActionIcon,
@@ -7,14 +8,13 @@ import {
   Card,
   Container,
   Flex,
-  Grid,
   Text,
   Title,
 } from "@mantine/core";
 import Head from "next/head";
+import Image from "next/image";
 import {useRouter} from "next/router";
 import {Carousel} from "react-responsive-carousel";
-import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -24,6 +24,7 @@ export default function Home() {
       sx={{
         position: "relative",
       }}
+      size="md"
     >
       <Box
         sx={{
@@ -47,15 +48,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Box
-        py={80}
-        p="xl"
-        style={{
-          ".controlDots?": {
-            top: 0,
-          },
-        }}
-      >
+      <Box py={50}>
         <Carousel
           axis="horizontal"
           autoPlay
@@ -181,19 +174,30 @@ export default function Home() {
                 </Text>
               </Box>
               <Box
-                w={{sm: "100%", md: "100%", lg: "50%", xl: "50%"}}
                 style={{
                   position: "relative",
-                  width: "50%",
                   alignItems: "center",
                   display: "flex",
                   justifyContent: "center",
                   minWidth: "300px",
                   // width: "100%",
                 }}
-                h={{base: "200px", sm: "200px", md: "560px"}}
+                w={{
+                  base: "100%",
+                  sm: "100%",
+                  md: "100%",
+                  lg: "50%",
+                  xl: "50%",
+                }}
+                h={{base: "200px", sm: "400px", md: "560px"}}
               >
-                <Image alt="" fill src={url} style={{objectFit: "cover"}} />
+                <Image
+                  alt=""
+                  fill
+                  src={url}
+                  objectPosition="center center"
+                  style={{objectFit: "cover", borderRadius: 24}}
+                />
               </Box>
             </RenderInContainer>
           ))}
@@ -202,7 +206,6 @@ export default function Home() {
 
       <Box
         bg="#b78f5d"
-        p="xl"
         pt={80}
         sx={{
           display: "flex",
@@ -217,6 +220,7 @@ export default function Home() {
             maxWidth: "1064px",
             width: "100%",
             margin: "0 auto",
+            padding: "1.5rem",
             gap: 40,
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           }}
@@ -239,7 +243,7 @@ export default function Home() {
             },
             {
               title: "Ginger",
-              url: "/ginger.jpeg",
+              url: "/ginger.jpg",
               navigateTo: "ginger",
             },
             {
@@ -286,8 +290,9 @@ export default function Home() {
                   alt={title}
                   fit="contain"
                   fill
+                  objectPosition="left center"
                   style={{
-                    objectFit: "contain",
+                    objectFit: "cover",
                     borderRadius: 20,
                   }}
                   src={
@@ -347,13 +352,11 @@ export default function Home() {
           width: "100%",
           margin: "0 auto",
           background: "#F8F9FD",
-
-          // "linear-gradient( to bottom, white 0%, white 70%,  #b78f5d 70%, #b78f5d 100%)",
         }}
       >
-        <Flex gap={40} wrap="wrap">
-          <Box w={{sm: "100%", md: "100%", lg: "48%"}}>
-            <Card p={0} radius={12} shadow="xl">
+        <Flex gap={60} wrap="wrap" justify="space-between">
+          <Box w={{base: "100%", sm: "100%", md: "100%", lg: "46%"}}>
+            <Card p={0} radius={12} shadow="xl" bg="transparent">
               <Box
                 sx={{
                   position: "relative",
@@ -373,7 +376,7 @@ export default function Home() {
             </Card>
           </Box>
           <Box
-            w={{sm: "100%", md: "100%", lg: "48%"}}
+            w={{sm: "100%", md: "100%", lg: "46%"}}
             sx={{textAlign: "justify"}}
           >
             <Title lh={1}>About</Title>

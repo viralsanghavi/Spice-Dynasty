@@ -129,3 +129,10 @@ a {
   background-color: red;
   border: 1px solid red;
 }
+
+.carousel.carousel-slider {
+  overflow: visible !important;
+}
+.control-dots {
+  bottom: -50px !important;
+}
