@@ -63,7 +63,7 @@ export default function App(props) {
             Text: {
               defaultProps: {
                 color: "#292929",
-                overflowWrap: "break-word",
+                overflowwrap: "break-word",
               },
             },
           },

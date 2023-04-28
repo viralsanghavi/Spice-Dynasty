@@ -1,15 +1,14 @@
-const {getDocs, collection} = require("firebase/firestore");
+import {collection, getDocs} from "firebase/firestore";
 const {database} = require("firebaseConfig");
 
-export const getCollectionData = async (collectionName) => {
+export const getFireStoreData = async (collectionName, setData, isActive) => {
   const querySnapshot = await getDocs(collection(database, collectionName));
-  let collectionData = [];
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
 
-    console.log(doc.id, " => ", doc.data());
-    collectionData = [...collectionData, {id: doc.id, ...doc.data()}];
+  let datum = [];
+  querySnapshot.forEach(async (doc) => {
+    datum = [...datum, {id: doc.id, ...doc.data()}];
   });
-  console.log(collectionData);
-  return collectionData;
+  if (isActive) {
+    setData(datum);
+  }
 };

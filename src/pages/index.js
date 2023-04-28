@@ -1,5 +1,5 @@
 import MainLayout from "@/layout/MainLayout";
-import {getCollectionData} from "@/utils/get-collection-data";
+import {getFireStoreData} from "@/utils/get-collection-data";
 import {UilAngleLeft, UilAngleRight} from "@iconscout/react-unicons";
 import {
   ActionIcon,
@@ -14,11 +14,25 @@ import {
 import Head from "next/head";
 import Image from "next/image";
 import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
 import {Carousel} from "react-responsive-carousel";
 
 export default function Home() {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [sliderData, setSliderData] = useState([]);
+  const [listingProductsData, setListingProductsData] = useState([]);
 
+  useEffect(() => {
+    let isActive = true;
+    getFireStoreData("home-screen", setSliderData, isActive);
+    getFireStoreData("listed-products", setListingProductsData, isActive);
+    setLoading(false);
+    return () => {
+      isActive = false;
+      setLoading(false);
+    };
+  }, []);
   const RenderInContainer = ({children}) => (
     <Container
       sx={{
@@ -39,6 +53,8 @@ export default function Home() {
       </Box>
     </Container>
   );
+
+  if (loading) return <></>;
   return (
     <MainLayout>
       <Head>
@@ -106,51 +122,8 @@ export default function Home() {
           )}
           animationHandler="fade"
         >
-          {[
-            {
-              title: "Star Anise",
-              url: "https://media.istockphoto.com/id/1140288941/photo/organic-indian-spice-herb-star-Anise-in-a-brown-bowl.jpg?s=612x612&w=0&k=20&c=dPcRb4maN-ABZC82B64zRYJpYvXLk3NMl7g0a53dxhk=",
-              description:
-                "Star Anise has been used in Asian Eurasian, cooking for many many years. This old-age spice is not only known as culinary expert, but is also famous fors its medicinal properties.",
-            },
-            {
-              title: "Cumin",
-              url: "/cumin.jpg",
-              description:
-                "Cumin is one of the most popular spices throughout Asia, especially in India where it is an important component of many popular recipes such as: the yogurt dish raita, alu jira (potatoes with cumin), masala dosa, and the popular spice blend garam masala. Cumin is also popular in Arabic cuisines and a part of baharat seasoning, north African tagines, and falafel.",
-            },
-            {
-              title: "Turmeric",
-              url: "/turmeric.jpeg",
-              description:
-                "Turmeric is a herbaceous perennial that reaches about three feet tall with grass-like leaves and greenish-yellow flowers. Turmeric thrives in rainy tropical areas such as the Indian subcontinent and Southeast Asia.",
-            },
-            {
-              title: "Chilly",
-              url: "/chilli.jpg",
-              description:
-                "Red peppers throughout Asia where they were particularly welcomed by Indian cooks who were already accustomed to spicy flavors.",
-            },
-            {
-              title: "Ginger",
-              url: "/ginger.jpeg",
-              description:
-                "Ginger is one of the most used spices in the world and comes in numerous forms, including fresh, dried, pickled, preserved, crystallized, candied, and powdered/ground. Ginger, along with green onion and garlic, is considered part of the “holy trinity” of cooking.",
-            },
-            {
-              title: "Coriander",
-              url: "/coriander.jpg",
-              description:
-                "The green, young coriander leaves, also known as cilantro, and the aromatic coriander fruit or seed find uses in curry meat dishes, poultry and seafood dishes, a variety of ethnic foods, puddings, breads, soups, and stews.",
-            },
-            {
-              title: "Green cardamom",
-              url: "/green-cardamom.jpg",
-              description:
-                "Katdare Green Elaichi is a premium quality spice that is highly aromatic and flavorful. Also known as choti elaichi, it is one of the most widely used spices in Indian cuisine. It has a strong, warm, and slightly sweet taste that adds a unique flavor to both sweet and savory dishes.",
-            },
-          ].map(({title, url, description = ""}) => (
-            <RenderInContainer key={title} style={{height: "100%"}}>
+          {sliderData?.map(({title, url, description = "", id}) => (
+            <RenderInContainer key={id} style={{height: "100%"}}>
               <Box
                 w={{sm: "100%", md: "100%", lg: "50%", xl: "50%"}}
                 sx={{
@@ -189,7 +162,7 @@ export default function Home() {
                   lg: "50%",
                   xl: "50%",
                 }}
-                h={{base: "200px", sm: "400px", md: "560px"}}
+                h={{base: "280px", sm: "400px", md: "560px"}}
               >
                 <Image
                   alt=""
@@ -206,7 +179,7 @@ export default function Home() {
 
       <Box
         bg="#b78f5d"
-        pt={80}
+        pt={50}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -225,38 +198,7 @@ export default function Home() {
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           }}
         >
-          {[
-            {
-              title: "Cumin",
-              url: "/cumin.jpg",
-              navigateTo: "cumin",
-            },
-            {
-              title: "Turmeric",
-              url: "/turmeric.jpeg",
-              navigateTo: "turmeric",
-            },
-            {
-              title: "Chilly",
-              url: "/chilli.jpg",
-              navigateTo: "chilly",
-            },
-            {
-              title: "Ginger",
-              url: "/ginger.jpg",
-              navigateTo: "ginger",
-            },
-            {
-              title: "Coriander",
-              url: "/coriander.jpg",
-              navigateTo: "coriander",
-            },
-            {
-              title: "Green cardamom",
-              url: "/green-cardamom.jpg",
-              navigateTo: "green-cardamom",
-            },
-          ].map(({title, url, index}) => (
+          {listingProductsData?.map(({title, url, index}) => (
             <Box
               key={title}
               pos="relative"
@@ -345,7 +287,7 @@ export default function Home() {
       </Box>
 
       <Box
-        py={80}
+        py={50}
         p="xl"
         sx={{
           maxWidth: "1064px",

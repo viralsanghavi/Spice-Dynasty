@@ -1,15 +1,5 @@
-import CInput from "@/components/CInput";
 import MainLayout from "@/layout/MainLayout";
-import {
-  Anchor,
-  BackgroundImage,
-  Box,
-  Button,
-  Container,
-  Flex,
-  Text,
-  Title,
-} from "@mantine/core";
+import {Anchor, Box, Flex, Text} from "@mantine/core";
 import {useMediaQuery} from "@mantine/hooks";
 import {useId} from "react";
 
@@ -82,7 +72,7 @@ const Contact = () => {
                   ":hover": {
                     backgroundColor: "transparent",
                   },
-                  overflowWrap: "break-word",
+                  overflowwrap: "break-word",
                 }}
                 href="mailto:vsanghavi3@gmail.com"
               >
@@ -97,7 +87,7 @@ const Contact = () => {
                     textDecorationThickness: "2px",
                     width: "fit-content",
                     letterSpacing: "1px",
-                    overflowWrap: "break-word",
+                    overflowrap: "break-word",
                     fontSize: largeScreen ? "2.5rem" : "1.5rem",
                   }}
                 >
