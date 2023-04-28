@@ -1,5 +1,4 @@
 import MainLayout from "@/layout/MainLayout";
-import {getFireStoreData} from "@/utils/get-collection-data";
 import {UilAngleLeft, UilAngleRight} from "@iconscout/react-unicons";
 import {
   ActionIcon,
@@ -11,28 +10,16 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import {collection, getDocs} from "firebase/firestore";
+import {database} from "firebaseConfig";
 import Head from "next/head";
 import Image from "next/image";
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
 import {Carousel} from "react-responsive-carousel";
 
-export default function Home() {
+export default function Home({sliderData = [], listingProductsData = []}) {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
-  const [sliderData, setSliderData] = useState([]);
-  const [listingProductsData, setListingProductsData] = useState([]);
 
-  useEffect(() => {
-    let isActive = true;
-    getFireStoreData("home-screen", setSliderData, isActive);
-    getFireStoreData("listed-products", setListingProductsData, isActive);
-    setLoading(false);
-    return () => {
-      isActive = false;
-      setLoading(false);
-    };
-  }, []);
   const RenderInContainer = ({children}) => (
     <Container
       sx={{
@@ -54,7 +41,6 @@ export default function Home() {
     </Container>
   );
 
-  if (loading) return <></>;
   return (
     <MainLayout>
       <Head>
@@ -355,4 +341,27 @@ export default function Home() {
       </Box>
     </MainLayout>
   );
+}
+export async function getStaticProps() {
+  const sliderQuerySnapshot = await getDocs(
+    collection(database, "home-screen")
+  );
+  let sliderData = [];
+  sliderQuerySnapshot.forEach(async (doc) => {
+    sliderData = [...sliderData, {id: doc.id, ...doc.data()}];
+  });
+  const productsQuerySnapshot = await getDocs(
+    collection(database, "listed-products")
+  );
+  let listingProductsData = [];
+  productsQuerySnapshot.forEach(async (doc) => {
+    listingProductsData = [...listingProductsData, {id: doc.id, ...doc.data()}];
+  });
+
+  return {
+    props: {
+      sliderData,
+      listingProductsData,
+    },
+  };
 }
