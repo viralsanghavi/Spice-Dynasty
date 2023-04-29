@@ -3,14 +3,33 @@ import {Button} from "@mantine/core";
 import {useScrollIntoView} from "@mantine/hooks";
 import {motion} from "framer-motion";
 import PropTypes from "prop-types";
+import {useEffect} from "react";
 
 const MainLayout = ({children, noBanner}) => {
   const {scrollIntoView, targetRef} = useScrollIntoView({offset: 60});
 
+  function toggle(display) {
+    let button = document.getElementById("scrollButton");
+    button.style.display = display;
+  }
+  useEffect(() => {
+    const nav = document.getElementById("childContainer");
+    const scroll = (e) => {
+      let navHeight = nav.offsetTop;
+      let scrollHeight = window.scrollY;
+
+      scrollHeight >= navHeight ? toggle("block") : toggle("none");
+    };
+    window.addEventListener("scroll", scroll);
+    return () => {
+      window.removeEventListener("scroll", scroll);
+    };
+  }, []);
+
   return (
     <motion.main
-      initial={{opacity: 0, y: 50}}
-      animate={{opacity: 1, y: 0}}
+      initial={{opacity: 0, y: 50, x: 0}}
+      animate={{opacity: 1, y: 0, x: 0}}
       exit={{opacity: 0, y: -50}}
       transition={{duration: 0.3}}
       style={{width: "100%"}}
@@ -18,9 +37,10 @@ const MainLayout = ({children, noBanner}) => {
     >
       <Header />
       <div>
-        <div>{children}</div>
+        <div id="childContainer">{children}</div>
         <Button
           onClick={() => scrollIntoView({alignment: "center"})}
+          id="scrollButton"
           sx={{
             background: "#b78f5e",
             height: "fit-content",
