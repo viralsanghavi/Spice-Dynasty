@@ -1,4 +1,6 @@
 import AboutUs from "@/components/AboutUs";
+import AnimatedWords from "@/components/AnimatedWords";
+import History from "@/components/History";
 import ProductsListing from "@/components/ProductsListing";
 import MainLayout from "@/layout/MainLayout";
 import {UilAngleLeft, UilAngleRight} from "@iconscout/react-unicons";
@@ -40,6 +42,7 @@ export default function Home({sliderData = [], listingProductsData = []}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <History />
 
       <Box p={{base: "xl"}} py={50}>
         <Carousel

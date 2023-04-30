@@ -15,36 +15,47 @@ const About = ({valuesData, planData}) => {
   const addDataToDb = async () => {
     [
       {
-        title: "Expand our market reach",
-        description:
-          "One of our primary goals for the next five years is to expand our market reach and increase our customer base in new and existing markets. This could include developing new distribution channels, expanding our online presence, and partnering with retailers and wholesalers in new regions.",
+        type: "Turmeric",
+        variants: [
+          "Turmeric bits/ tukdi",
+          "Turmeric Gattha/ bulbs",
+          "Good grade",
+          "FAQ fair average quality",
+          "Europe quality",
+          "Japan quality",
+          "Hand picked",
+        ],
       },
 
       {
-        title: "Increase product offerings",
-        description:
-          "We aim to expand our product offerings beyond spices to include related products such as spice blends, sauces, and condiments. We could also explore offering specialty and organic products.",
+        type: "Fennel Sortex or double sortex",
+        variants: [
+          "Singapore 99.95%",
+          "Singapore 99.5%",
+          "Singapore 99%",
+
+          "Singapore 98%",
+
+          "Europe 99.5%",
+          "Europe 99%",
+          "Europe 98%",
+        ],
       },
+      {type: "Cumin", variants: ["Cumin 99%", "Cumin 98%"]},
       {
-        title: "Develop sustainable sourcing practices",
-        description:
-          "As a company committed to sustainability, we plan to develop sustainable sourcing practices that support local communities and protect the environment. This could include sourcing from small-scale farmers and using eco-friendly packaging materials.",
-      },
-      {
-        title: "Invest in technology",
-        description:
-          "To stay competitive and streamline our operations, we plan to invest in technology such as inventory management software, supply chain management tools, and e-commerce platforms.",
-      },
-      {
-        title: "Enhance customer experience",
-        description:
-          "We plan to enhance the customer experience by providing more personalized and responsive customer service, improving our website's usability and functionality, and creating more engaging marketing campaigns.",
+        type: "Dried Ginger",
+        variants: [
+          "Ginger A1",
+          "Ginger A1 best",
+          "Ginger deluxe",
+          "Ginger super deluxe",
+        ],
       },
     ].map(
-      async ({title, description}) =>
-        await addDoc(collection(database, "plan"), {
-          title,
-          description,
+      async ({type, variants}) =>
+        await addDoc(collection(database, "all-products"), {
+          type,
+          variants,
         })
     );
   };
@@ -57,7 +68,6 @@ const About = ({valuesData, planData}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container py={50}>
-        <Space w="xl" />
         <Text
           component="h1"
           tt="uppercase"
@@ -69,40 +79,8 @@ const About = ({valuesData, planData}) => {
             fontSize: "max(3.25rem,min(9vw,9.375rem))",
           }}
         >
-          Mission
+          Vision
         </Text>
-        <Text
-          component="h1"
-          tt="uppercase"
-          c="black"
-          mt="xl"
-          ml="20%"
-          sx={{
-            fontWeight: "500",
-            lineHeight: 0.9454545454545454,
-            fontSize: "max(3.25rem,min(9vw,9.375rem))",
-          }}
-        >
-          & Vision
-        </Text>
-
-        <Box
-          mt={40}
-          sx={{
-            padding: 0,
-            fontWeight: 400,
-            fontSize: "max(1.75rem,min(2vw,3.5rem))",
-
-            textAlign: "justify",
-          }}
-        >
-          At Spice Dynasty, we are committed to providing our customers with the
-          best selection of premium Indian spices, sourced from trusted
-          suppliers and produced using traditional methods. We strive to
-          maintain the highest standards of quality, consistency, and
-          authenticity in all our products, while ensuring fair compensation and
-          safe working conditions for our employees and partners.
-        </Box>
         <blockquote
           style={{
             marginTop: 40,
@@ -122,7 +100,39 @@ const About = ({valuesData, planData}) => {
           Indian spices to customers around the world, while promoting
           sustainable and fair trade practices.
         </blockquote>
+        <Space w="xl" />
 
+        <Text
+          component="h1"
+          tt="uppercase"
+          c="black"
+          mt="2.5rem"
+          sx={{
+            fontWeight: "500",
+            lineHeight: 0.9454545454545454,
+            fontSize: "max(3.25rem,min(9vw,9.375rem))",
+          }}
+        >
+          Mission
+        </Text>
+
+        <Box
+          mt={40}
+          sx={{
+            padding: 0,
+            fontWeight: 400,
+            fontSize: "max(1.75rem,min(2vw,3.5rem))",
+
+            textAlign: "justify",
+          }}
+        >
+          At Spice Dynasty, we are committed to providing our customers with the
+          best selection of premium Indian spices, sourced from trusted
+          suppliers and produced using traditional methods. We strive to
+          maintain the highest standards of quality, consistency, and
+          authenticity in all our products, while ensuring fair compensation and
+          safe working conditions for our employees and partners.
+        </Box>
         <Space h="xl" />
         <Text
           component="h2"
@@ -135,13 +145,19 @@ const About = ({valuesData, planData}) => {
         </Text>
         <Space h="xl" />
         <Accordion
-          variant="contained"
+          variant="separated"
           radius="lg"
           chevronPosition="left"
           defaultValue="Quality"
         >
           {valuesData?.map(({title, description}) => (
-            <Accordion.Item key={title} value={title}>
+            <Accordion.Item
+              key={title}
+              value={title}
+              sx={{
+                border: "1px solid #dee2e6",
+              }}
+            >
               <Accordion.Control>{title}</Accordion.Control>
               <Accordion.Panel>{description}</Accordion.Panel>
             </Accordion.Item>

@@ -110,68 +110,73 @@ const Header = () => {
   ];
   const {pathname} = router;
   return (
-    <Heading
-      p="xs"
-      w="100%"
-      sx={{
-        background: "transparent",
-        border: "none",
-      }}
-    >
-      <Container
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-          alignItems: "center",
+    <Box>
+      <Heading
+        p="xs"
+        w="100%"
+        sx={{
+          background: "transparent",
+          border: "none",
         }}
-        justify={{
-          sm: "flex-start",
-          md: "flex-start",
-          lg: "space-between",
-        }}
+        id="customHeader"
       >
-        <Image
-          src="/logo.png"
-          // height={280}
-          fill
-          width={80}
+        <Container
           style={{
-            // borderRadius: "50%",
-            objectFit: "contain",
-          }}
-        />
-        <Box
-          sx={{
             display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
             alignItems: "center",
-            gap: "1.8rem",
           }}
-          display={{
-            base: "none",
-            sm: "none",
-            md: "none",
-            lg: "flex",
+          justify={{
+            sm: "flex-start",
+            md: "flex-start",
+            lg: "space-between",
           }}
         >
-          {mediaList.map(({Icon}, index) => (
-            <ActionIcon
-              key={index}
-              radius="xl"
-              variant="transparent"
-              sx={{
-                color: index === mediaList.length - 1 ? "#b78f5e" : "#292929",
-                ":hover": {
-                  color: "#b78f5e",
-                },
-              }}
-            >
-              {Icon}
-            </ActionIcon>
-          ))}
-        </Box>
-      </Container>
-    </Heading>
+          <Image
+            src="/logo.png"
+            // height={280}
+            onClick={() => router.push("/")}
+            fill
+            width={80}
+            style={{
+              // borderRadius: "50%",
+              objectFit: "contain",
+              cursor: "pointer",
+            }}
+          />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1.8rem",
+            }}
+            display={{
+              base: "none",
+              sm: "none",
+              md: "none",
+              lg: "flex",
+            }}
+          >
+            {mediaList.map(({Icon}, index) => (
+              <ActionIcon
+                key={index}
+                radius="xl"
+                variant="transparent"
+                sx={{
+                  color: index === mediaList.length - 1 ? "#b78f5e" : "#292929",
+                  ":hover": {
+                    color: "#b78f5e",
+                  },
+                }}
+              >
+                {Icon}
+              </ActionIcon>
+            ))}
+          </Box>
+        </Container>
+      </Heading>
+    </Box>
   );
 };
 

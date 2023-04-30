@@ -1,4 +1,5 @@
 import {Box, Button, Text} from "@mantine/core";
+import Head from "next/head";
 import Image from "next/image";
 import {useRouter} from "next/router";
 import React from "react";
@@ -45,7 +46,7 @@ const ProductsListing = ({listingProductsData = []}) => {
               },
               cursor: "pointer",
             }}
-            onClick={() => router.push(`product/${url}`)}
+            onClick={() => router.push("product")}
           >
             <Box
               sx={{

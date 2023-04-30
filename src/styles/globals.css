@@ -135,8 +135,7 @@ a {
   /* z-index: 9999999; */
 }
 .control-dots {
-  bottom: -50px !important;
-  z-index: 9999999;
+  /* z-index: 9999999; */
 }
 .productCard {
   overflow: hidden;

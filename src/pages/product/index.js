@@ -1,63 +1,87 @@
 import MainLayout from "@/layout/MainLayout";
 import {ALL_PRODUCTS} from "@/utils/constants";
-import {Box, Card, Container} from "@mantine/core";
+import {
+  Accordion,
+  Box,
+  Card,
+  Container,
+  List,
+  Space,
+  Text,
+} from "@mantine/core";
+import {collection, getDocs} from "firebase/firestore";
+import {database} from "firebaseConfig";
+import Head from "next/head";
 import Image from "next/image";
 
-const AllProducts = () => {
+const AllProducts = ({allProducts}) => {
   return (
     <MainLayout>
+      <Head>
+        <title>Listed Products</title>
+        <meta name="description" content="Spice dynasty" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Container p="xs" w="100%" mt="xl">
-        <Box
+        <Text
+          component="h2"
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
+            fontSize: "max(3.25rem,min(2.7vw,6.3125rem))",
+            fontWeight: 400,
           }}
         >
-          {ALL_PRODUCTS.map(({title, navigateTo}) => {
-            return (
-              <Card
-                sx={{
-                  backgroundColor: "white",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 20,
-                  maxWidth: "300px",
-                  borderRadius: 20,
-                  width: "100%",
-                  ":hover": {
-                    cursor: navigateTo ? "pointer" : "initial",
-                  },
-                  padding: "0 20px",
-                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.12)",
-                }}
-                mb="xl"
-                key={title}
-              >
-                <Box pos="relative" h="40px" w="40px">
-                  <Image fill src="https://picsum.photos/40/40" />
-                </Box>
-                <Box
-                  component={navigateTo ? "a" : "p"}
-                  href={`product/${navigateTo}`}
-                  sx={{
-                    textStyle: "none",
-                    // textDecoration: "none",
-                    textDecoration: navigateTo ? "underline" : "none",
-                    color: "inherit",
-                    ":hover": {},
-                    margin: 0,
-                  }}
-                >
-                  {title}
-                </Box>
-              </Card>
-            );
-          })}
-        </Box>
+          Type of Products
+        </Text>
+        <Space h="xl" />
+
+        <Accordion
+          variant="separated"
+          radius="lg"
+          chevronPosition="left"
+          defaultValue="Quality"
+        >
+          {allProducts?.map(({type, variants}) => (
+            <Accordion.Item
+              key={type}
+              value={type}
+              sx={{
+                border: "1px solid #dee2e6",
+              }}
+            >
+              <Accordion.Control>{type}</Accordion.Control>
+              <Accordion.Panel>
+                <Container>
+                  <List type="ordered">
+                    {variants.map((item) => (
+                      <List.Item key={item}>{item}</List.Item>
+                    ))}
+                  </List>
+                </Container>
+              </Accordion.Panel>
+            </Accordion.Item>
+          ))}
+        </Accordion>
+        <Space h="xl" />
       </Container>
     </MainLayout>
   );
 };
 
 export default AllProducts;
+
+export async function getStaticProps() {
+  const allProductsQuerySnapshot = await getDocs(
+    collection(database, "all-products")
+  );
+  let allProducts = [];
+  allProductsQuerySnapshot.forEach(async (doc) => {
+    allProducts = [...allProducts, {id: doc.id, ...doc.data()}];
+  });
+
+  return {
+    props: {
+      allProducts,
+    },
+  };
+}
